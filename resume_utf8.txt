@@ -1,0 +1,79 @@
+RAUNAK KUSHWAHA
+raunakkush2005@gmail.com
+ 
++91 9352491146
+ 
+Prayagraj, IN
+ 
+Raunak-kushwaha
+ 
+Raunak-kushwaha
+ 
+iamraunak
+ 
+SUMMARY
+Passionate UI/ UX Designer with Computer Science degree seeking entry-level opportunities to create user-centered
+digital experiences. Proficient in Figma, Adobe Creative Suite, wireframing, and prototyping. Proven ability to redesign
+applications and improve user engagement through data-driven design decisions.
+TECHNICAL SKILLS
+UX Methods
+•User Research Methods
+•Personas & User 
+Journeys
+•Design Thinking
+•User Flows & 
+Wireframing
+•Information 
+Architecture
+Design Principles
+•Accessibility
+•Typography & Color 
+Theory
+•Design Systems
+UI & Visual Design
+•High-Fidelity UI Design
+•Interaction Design
+•Graphic Designing
+Design Tools
+•Figma
+•FigJam
+•Framer
+•Miro
+•Notion
+•Canva
+•Lovable
+EDUCATION
+Bachelor of Technology (B.Tech), Amity University Rajasthan 2022 – 2026
+in Computer Science and Engineering
+Minor in Bachelor of Arts (BA), Amity University Rajasthan 2022 – 2026
+in Visual Communication
+Higher Secondary (CBSE), Kendriya Vidyalaya 2022
+EXPERIENCE
+Indian Institute of Technology Kanpur, 
+Intern - Full-Stack (MERN) Developer
+06/2025 – 08/2025
+•Created a full-stack student dashboard web application using MERN stack to manage assignments, grades, and 
+schedules
+Internshala Training, Trainee - Web Developer 06/2024 – 07/2024
+•Developed dynamic web apps with JavaScript and jQuery.
+•Gained PHP/ MySQL backend experience and deployed a responsive web project.
+PROJECTS
+ZESTRO , Branding 01/2026
+Designed ZESTRO, a conceptual fast-casual food brand, focusing on a friendly visual identity and scalable branding 
+system.
+Student ERP Portal - Redesign , UI/UX 01/2026
+Redesigned the commonly used ERP portal by students for tracking their academic progress and related work.
+FusionCrew, MERN 08/2025
+Built a platform for showcasing collaborative or individual projects. Project recognised by IIT Kanpur.  
+UniqueNotes, HTML, CSS, Java, Js, Servlet, JSP, MySql 04/2025
+Designed for a seamless, user-friendly note management experience. Can handle CRUD operations.
+CERTIFICATIONS
+Digital SKills - User Experience - Accenture 
+The Origins III: JavaScript 
+Forage - Goldman Sachs Software Engineering 
+Training 
+Web Development - Internshala
+Full Stack Web Development with MERN Stack - IIT 
+Kanpur 
+Responsive Web Design 
+Forage - Deloitte Australia Data Analytics Training 
