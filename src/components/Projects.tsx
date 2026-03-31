@@ -38,7 +38,7 @@ const projectsData = [
 
 export function Projects() {
   return (
-    <section id="projects" className="py-20 lg:py-32 relative bg-muted/30 overflow-hidden">
+    <section id="projects" className="py-20 lg:py-32 relative overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeading 
           title="Some Things I've Built" 
@@ -53,7 +53,7 @@ export function Projects() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="glass p-8 rounded-2xl flex flex-col justify-between group hover:-translate-y-2 transition-transform duration-300 shadow-sm hover:shadow-xl hover:shadow-accent/5 cursor-pointer relative overflow-hidden"
+              className="glass p-8 rounded-2xl flex flex-col justify-between group transition-transform duration-300 shadow-sm hover:shadow-xl hover:shadow-accent/5 cursor-pointer relative overflow-hidden"
             >
               {/* Subtle gradient background on hover */}
               <div className="absolute inset-0 bg-gradient-to-tr from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />

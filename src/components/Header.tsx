@@ -2,22 +2,24 @@
 
 import * as React from "react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X, Focus } from "lucide-react"
 import { useDesignMode } from "./DesignModeContext"
 import { ThemeToggle } from "./ThemeToggle"
 import { cn } from "@/lib/utils"
 
 const navItems = [
-  { name: "About", href: "#about" },
-  { name: "Experience", href: "#experience" },
-  { name: "Projects", href: "#projects" },
-  { name: "Skills", href: "#skills" },
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Contact", href: "/contact" },
 ]
 
 export function Header() {
   const [isScrolled, setIsScrolled] = React.useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
   const { isDesignMode, toggleDesignMode } = useDesignMode()
+  const pathname = usePathname()
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -50,16 +52,31 @@ export function Header() {
             </div>
 
             {/* Desktop Nav */}
-            <nav className="hidden md:flex gap-6 items-center">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  {item.name}
-                </Link>
-              ))}
+            <nav className="hidden md:flex gap-1 items-center">
+              {navItems.map((item) => {
+                const isActive = pathname === item.href
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className={cn(
+                      "relative px-4 py-2 text-sm font-medium transition-colors rounded-full",
+                      isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                    )}
+                  >
+                    {isActive && (
+                      <motion.div
+                        layoutId="active-nav"
+                        className="absolute inset-0 bg-accent/20 border-2 border-accent/30 rounded-full shadow-sm shadow-accent/10"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                    <span className="relative z-10">{item.name}</span>
+                  </Link>
+                )
+              })}
               <a
                 href="/Resume - Onep.pdf"
                 target="_blank"
@@ -110,25 +127,51 @@ export function Header() {
             "md:hidden glass border border-border absolute w-[calc(100vw-32px)] left-1/2 -translate-x-1/2 top-20 rounded-2xl overflow-hidden shadow-2xl transition-all duration-300",
             !isScrolled && "w-full rounded-none rounded-b-2xl border-t-0 -translate-y-4 top-16"
           )}>
-            <div className="px-4 pt-2 pb-6 space-y-1">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block px-4 py-3 text-base font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-lg transition-colors"
-                >
-                  {item.name}
-                </Link>
-              ))}
-              <a
-                href="/Resume - Onep.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block mt-4 mx-2 px-4 py-3 text-center text-base font-bold bg-accent text-accent-foreground rounded-xl active:scale-95 transition-transform"
+            <div className="px-4 pt-4 pb-8 space-y-4">
+              {navItems.map((item, index) => {
+                const isActive = pathname === item.href
+                return (
+                  <motion.div
+                    key={item.name}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <Link
+                      href={item.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={cn(
+                        "relative flex items-center justify-center py-4 text-xl font-semibold transition-all rounded-xl",
+                        isActive 
+                          ? "text-accent bg-accent/10 shadow-sm" 
+                          : "text-muted-foreground active:text-foreground active:bg-muted/50"
+                      )}
+                    >
+                      {item.name}
+                      {isActive && (
+                        <motion.div 
+                          layoutId="mobile-nav-dot"
+                          className="absolute bottom-2 w-1.5 h-1.5 rounded-full bg-accent"
+                        />
+                      )}
+                    </Link>
+                  </motion.div>
+                )
+              })}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: navItems.length * 0.1 }}
               >
-                Download Resume
-              </a>
+                <a
+                  href="/Resume - Onep.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block mt-6 px-4 py-4 text-center text-lg font-bold bg-accent text-accent-foreground rounded-2xl shadow-lg shadow-accent/20 active:scale-95 transition-all"
+                >
+                  Download Resume
+                </a>
+              </motion.div>
             </div>
           </div>
         )}

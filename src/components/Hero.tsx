@@ -2,8 +2,9 @@
 
 import * as React from "react"
 import { ArrowRight, Download, Mail } from "lucide-react"
-import { FaGithub, FaLinkedin } from "react-icons/fa"
+import { FaGithub, FaLinkedin, FaDiscord } from "react-icons/fa"
 import { motion, useScroll, useTransform } from "framer-motion"
+import Link from "next/link"
 
 export function Hero() {
   const { scrollY } = useScroll()
@@ -13,7 +14,7 @@ export function Hero() {
   const scale = useTransform(scrollY, [0, 500], [1, 0.95])
 
   return (
-    <section id="about" className="relative pt-32 pb-20 lg:pt-56 lg:pb-32 overflow-hidden min-h-[90vh] flex items-center">
+    <section id="about" className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 overflow-hidden min-h-[70vh] flex items-center">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10" data-design-tag="max-w-7xl mx-auto sm:px-6">
         <motion.div className="max-w-3xl" style={{ y: yText, opacity, scale }}>
           <motion.div
@@ -75,28 +76,22 @@ export function Hero() {
             className="flex flex-wrap gap-4 items-center"
             data-design-tag="flex row gap-16px items-center"
           >
-            <a 
-              href="mailto:raunakkush2005@gmail.com"
+            <Link
+              href="/contact"
               className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-foreground text-background font-medium rounded-lg hover:bg-foreground/90 transition-colors"
             >
               Get in touch <ArrowRight className="h-4 w-4" />
-            </a>
+            </Link>
             
-            <a
-              href="/Resume - Onep.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 glass hover-glass font-medium rounded-lg"
-            >
-              <Download className="h-4 w-4" /> Resume
-            </a>
-            
-            <div className="flex items-center gap-2 ml-2">
-              <a href="#" className="p-3 glass hover-glass rounded-lg text-muted-foreground hover:text-foreground" aria-label="GitHub">
+            <div className="flex items-center gap-2">
+              <a href="https://github.com/Raunak-kushwaha" target="_blank" rel="noopener noreferrer" className="p-3 glass hover-glass rounded-lg text-muted-foreground hover:text-foreground transition-colors" aria-label="GitHub">
                 <FaGithub className="h-5 w-5" />
               </a>
-              <a href="#" className="p-3 glass hover-glass rounded-lg text-muted-foreground hover:text-foreground" aria-label="LinkedIn">
+              <a href="https://www.linkedin.com/in/raunak-kushwaha/" target="_blank" rel="noopener noreferrer" className="p-3 glass hover-glass rounded-lg text-muted-foreground hover:text-foreground transition-colors" aria-label="LinkedIn">
                 <FaLinkedin className="h-5 w-5" />
+              </a>
+              <a href="#" target="_blank" rel="noopener noreferrer" className="p-3 glass hover-glass rounded-lg text-muted-foreground hover:text-foreground transition-colors" aria-label="Discord">
+                <FaDiscord className="h-5 w-5" />
               </a>
             </div>
           </motion.div>

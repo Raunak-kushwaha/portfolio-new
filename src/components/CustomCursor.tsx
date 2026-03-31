@@ -1,19 +1,24 @@
 "use client"
 
 import * as React from "react"
-import { motion, useSpring, useMotionValue } from "framer-motion"
+import { motion, useSpring, useMotionValue, useAnimationFrame } from "framer-motion"
 
 export function CustomCursor() {
   const cursorX = useMotionValue(-100)
   const cursorY = useMotionValue(-100)
+  const rotation = useMotionValue(0)
   const [isHovering, setIsHovering] = React.useState(false)
+  const [isMouseDown, setIsMouseDown] = React.useState(false)
+
+  // Use a spring to smooth the speed changes
+  const speedSpring = useSpring(0, { stiffness: 100, damping: 20 })
 
   React.useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       cursorX.set(e.clientX)
       cursorY.set(e.clientY)
     }
-    
+
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement
       if (
@@ -28,14 +33,36 @@ export function CustomCursor() {
       }
     }
 
+    const handleMouseDown = () => setIsMouseDown(true)
+    const handleMouseUp = () => setIsMouseDown(false)
+
     window.addEventListener("mousemove", handleMouseMove)
     window.addEventListener("mouseover", handleMouseOver)
+    // Using capture: true ensures we get the click even if its propagation was stopped
+    window.addEventListener("mousedown", handleMouseDown, { capture: true })
+    window.addEventListener("mouseup", handleMouseUp, { capture: true })
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove)
       window.removeEventListener("mouseover", handleMouseOver)
+      window.removeEventListener("mousedown", handleMouseDown, { capture: true })
+      window.removeEventListener("mouseup", handleMouseUp, { capture: true })
     }
-  }, [])
+  }, [cursorX, cursorY])
+
+  // Update rotation based on speed every frame
+  useAnimationFrame((time, delta) => {
+    const idleSpeed = 0.5
+    const hoverSpeed = 3
+    const clickSpeed = 20
+    
+    const targetSpeed = isMouseDown ? clickSpeed : (isHovering ? hoverSpeed : idleSpeed)
+    speedSpring.set(targetSpeed)
+    
+    const currentRotation = rotation.get()
+    // Increment the rotation based on the smoothed current speed
+    rotation.set(currentRotation + speedSpring.get() * (delta / 16.66) )
+  })
 
   const springConfig = { damping: 25, stiffness: 200, mass: 0.5 }
   const cursorXSpring = useSpring(cursorX, springConfig)
@@ -46,7 +73,7 @@ export function CustomCursor() {
   React.useEffect(() => setMounted(true), [])
 
   if (!mounted) return null
-  
+
   // Hide custom cursor on touch devices
   if (typeof window !== "undefined" && window.matchMedia("(hover: none)").matches) {
     return null
@@ -70,16 +97,11 @@ export function CustomCursor() {
       }}
     >
       <motion.div
-        animate={{ 
-          rotate: 360,
-          scale: isHovering ? 1.6 : 1 
+        style={{
+          rotate: rotation,
+          scale: isMouseDown ? 0.8 : (isHovering ? 1.6 : 1)
         }}
-        transition={{ 
-          rotate: {
-            duration: isHovering ? 0.4 : 4, 
-            repeat: Infinity, 
-            ease: "linear" 
-          },
+        transition={{
           scale: {
             type: "spring",
             stiffness: 400,
