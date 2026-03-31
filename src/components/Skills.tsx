@@ -130,10 +130,10 @@ export function Skills() {
           subtitle="My toolkit and academic background." 
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8">
           
-          {/* Left Column: Skills */}
-          <div>
+          {/* Column 1: Skills (5/12) */}
+          <div className="md:col-span-2 lg:col-span-5">
             <div className="flex items-center gap-3 mb-8 text-2xl font-bold">
               <span className="h-6 w-1 bg-accent rounded-full"></span>
               <h3>Core Competencies</h3>
@@ -161,57 +161,53 @@ export function Skills() {
             </div>
           </div>
 
-          {/* Right Column: Education & Certifications */}
-          <div className="space-y-16">
-            
-            {/* Education */}
-            <div>
-              <div className="flex items-center gap-3 mb-8 text-2xl font-bold">
-                <GraduationCap className="text-accent w-7 h-7" />
-                <h3>Education</h3>
-              </div>
-              <div className="space-y-6">
-                {education.map((item, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, margin: "-50px" }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="flex flex-col border-l-2 border-border pl-4"
-                  >
-                    <h4 className="text-lg font-bold text-foreground">{item.degree}</h4>
-                    <span className="text-muted-foreground mt-1">{item.school}</span>
-                    <span className="text-sm font-mono text-accent mt-2">{item.date}</span>
-                  </motion.div>
-                ))}
-              </div>
+          {/* Column 2: Education (3/12) */}
+          <div className="lg:col-span-3">
+            <div className="flex items-center gap-3 mb-8 text-2xl font-bold">
+              <GraduationCap className="text-accent w-7 h-7" />
+              <h3>Education</h3>
             </div>
-
-            {/* Certifications */}
-            <div>
-              <div className="flex items-center gap-3 mb-8 text-2xl font-bold">
-                <Award className="text-accent w-7 h-7" />
-                <h3>Certifications</h3>
-              </div>
-              <ul className="space-y-4">
-                {certifications.map((item, index) => (
-                  <motion.li
-                    key={index}
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, margin: "-50px" }}
-                    transition={{ duration: 0.5, delay: index * 0.05 }}
-                    className="flex items-start"
-                  >
-                    <span className="text-accent mr-3 font-bold">✓</span>
-                    <span className="text-muted-foreground font-medium">{item}</span>
-                  </motion.li>
-                ))}
-              </ul>
+            <div className="space-y-6">
+              {education.map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="flex flex-col border-l-2 border-border pl-4"
+                >
+                  <h4 className="text-base font-bold text-foreground leading-snug">{item.degree}</h4>
+                  <span className="text-sm text-muted-foreground mt-1">{item.school}</span>
+                  <span className="text-xs font-mono text-accent mt-2 uppercase">{item.date}</span>
+                </motion.div>
+              ))}
             </div>
-
           </div>
+
+          {/* Column 3: Certifications (4/12) */}
+          <div className="lg:col-span-4">
+            <div className="flex items-center gap-3 mb-8 text-2xl font-bold">
+              <Award className="text-accent w-7 h-7" />
+              <h3>Certifications</h3>
+            </div>
+            <ul className="grid grid-cols-1 gap-4">
+              {certifications.map((item, index) => (
+                <motion.li
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, delay: index * 0.05 }}
+                  className="p-3 glass rounded-xl border border-border/50 text-sm flex items-start gap-3 hover:border-accent/30 transition-colors"
+                >
+                  <span className="text-accent font-bold shrink-0 mt-0.5 text-xs">✓</span>
+                  <span className="text-muted-foreground leading-tight font-medium">{item}</span>
+                </motion.li>
+              ))}
+            </ul>
+          </div>
+
         </div>
       </div>
     </section>
