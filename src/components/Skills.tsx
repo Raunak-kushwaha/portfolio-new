@@ -1,9 +1,76 @@
 "use client"
 
 import * as React from "react"
-import { motion } from "framer-motion"
+import { motion, useMotionValue, useSpring } from "framer-motion"
 import { SectionHeading } from "./SectionHeading"
 import { GraduationCap, Award } from "lucide-react"
+
+function GravityChip({ children }: { children: React.ReactNode }) {
+  const ref = React.useRef<HTMLDivElement>(null)
+  
+  const x = useMotionValue(0)
+  const y = useMotionValue(0)
+  const rotate = useMotionValue(0)
+
+  // Calibrated springs for heavy, physical snap back
+  const springConfig = { stiffness: 400, damping: 25, mass: 0.5 }
+  const springX = useSpring(x, springConfig)
+  const springY = useSpring(y, springConfig)
+  const springRotate = useSpring(rotate, springConfig)
+
+  React.useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!ref.current) return
+      
+      const { clientX, clientY } = e
+      const { width, height, left, top } = ref.current.getBoundingClientRect()
+      
+      const centerX = left + width / 2
+      const centerY = top + height / 2
+
+      const distX = clientX - centerX
+      const distY = clientY - centerY
+      
+      const distance = Math.sqrt(distX * distX + distY * distY)
+      // Radius of the gravitational field
+      const maxRadius = 160
+
+      if (distance < maxRadius && distance > 0) {
+        // Calculate repulsion force (0 to 1)
+        const force = (maxRadius - distance) / maxRadius
+        
+        // Push chip away from cursor
+        const pushX = -(distX / distance) * force * 50
+        const pushY = -(distY / distance) * force * 50
+        
+        // Tilt chip away
+        const angle = -(distX / distance) * force * 15
+        
+        x.set(pushX)
+        y.set(pushY)
+        rotate.set(angle)
+      } else {
+        // Snap back
+        x.set(0)
+        y.set(0)
+        rotate.set(0)
+      }
+    }
+
+    window.addEventListener("mousemove", handleMouseMove)
+    return () => window.removeEventListener("mousemove", handleMouseMove)
+  }, [x, y, rotate])
+
+  return (
+    <motion.div
+      ref={ref}
+      style={{ x: springX, y: springY, rotate: springRotate }}
+      className="px-4 py-2 bg-background/50 glass border border-border rounded-xl text-sm font-medium hover:text-accent shadow-sm select-none z-10 inline-block"
+    >
+      {children}
+    </motion.div>
+  )
+}
 
 const skillsGroups = [
   {
@@ -80,14 +147,11 @@ export function Skills() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
                   <h4 className="text-secondary-foreground font-semibold mb-4 text-sm uppercase tracking-wider text-muted-foreground">{group.title}</h4>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2 relative">
                     {group.skills.map((skill, i) => (
-                      <span
-                        key={i}
-                        className="px-4 py-2 bg-muted/50 border border-border rounded-xl text-sm font-medium hover:border-accent/40 text-foreground transition-all cursor-default hover:-translate-y-0.5"
-                      >
+                      <GravityChip key={i}>
                         {skill}
-                      </span>
+                      </GravityChip>
                     ))}
                   </div>
                 </motion.div>

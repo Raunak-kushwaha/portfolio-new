@@ -3,22 +3,22 @@
 @theme {
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
-  
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  
+
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
-  
+
   --color-border: var(--border);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
-  
+
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
-  
+
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
@@ -26,46 +26,143 @@
 
 @layer base {
   :root {
-    --background: #f8fafc;
-    --foreground: #0f172a;
-    --card: #ffffff;
-    --card-foreground: #0f172a;
-    --border: #e2e8f0;
-    --primary: #0f172a;
-    --primary-foreground: #f8fafc;
-    --muted: #f1f5f9;
-    --muted-foreground: #64748b;
-    --accent: #10b981; /* Emerald/Teal vibe */
-    --accent-foreground: #ffffff;
+    --background: #efd9ce;
+    /* Misty rose / light pinkish beige */
+    --foreground: #1c153d;
+    /* Very deep purple for text readability */
+    --card: #dec0f1;
+    /* Pale purple */
+    --card-foreground: #1c153d;
+    --border: #b79ced;
+    /* Light violet */
+    --primary: #7161ef;
+    /* Slate blue / deep purple */
+    --primary-foreground: #efd9ce;
+    --muted: #eaddf3;
+    /* Very pale purple */
+    --muted-foreground: #7161ef;
+    --accent: #7161ef;
+    /* Darkest palette color as accent */
+    --accent-foreground: #efd9ce;
     --radius: 0.5rem;
   }
+
   .dark {
-    --background: #0a0f1a; /* deep slate */
-    --foreground: #f8fafc;
-    --card: #0f172a;
-    --card-foreground: #f8fafc;
-    --border: #1e293b;
-    --primary: #f8fafc;
-    --primary-foreground: #0f172a;
-    --muted: #1e293b;
-    --muted-foreground: #94a3b8;
-    --accent: #10b981; 
-    --accent-foreground: #ffffff;
+    --background: #100d26;
+    /* Deep dark purple derived from #7161ef */
+    --foreground: #efd9ce;
+    /* Lightest palette color for text */
+    --card: #181438;
+    /* Slightly lighter than bg */
+    --card-foreground: #efd9ce;
+    --border: #3b3075;
+    /* Subdued dark purple */
+    --primary: #efd9ce;
+    --primary-foreground: #100d26;
+    --muted: #181438;
+    --muted-foreground: #dec0f1;
+    /* Pale purple for dark mode muted text */
+    --accent: #b79ced;
+    /* Glowing wisteria for dark mode accent */
+    --accent-foreground: #100d26;
   }
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+  }
+
+  html::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari and Opera */
+  }
+
   * {
     @apply border-border;
+    cursor: none !important;
+    /* Hide default cursor forcefully */
   }
+
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
   }
+}
+
+/* Design X-Ray Meta Mode */
+.design-mode {
+  background-image:
+    linear-gradient(to right, rgba(239, 68, 68, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(239, 68, 68, 0.07) 1px, transparent 1px) !important;
+  background-size: 16px 16px !important;
+}
+
+.design-mode *:not(body):not(html) {
+  outline: 1px dashed rgba(239, 68, 68, 0.4);
+}
+
+.design-mode [data-design-tag] {
+  position: relative;
+}
+
+.design-mode [data-design-tag]::after {
+  content: attr(data-design-tag);
+  position: absolute;
+  top: -18px;
+  right: -8px;
+  background-color: #ef4444;
+  color: #fff;
+  font-family: monospace;
+  font-size: 9.5px;
+  padding: 2px 5px;
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 9999;
+  white-space: nowrap;
+  font-weight: 600;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+.design-mode [data-design-ruler] {
+  position: relative;
+}
+
+.design-mode [data-design-ruler]::before {
+  content: attr(data-design-ruler);
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+  transform-origin: center;
+  color: #ef4444;
+  font-family: monospace;
+  font-size: 10px;
+  font-weight: 600;
+  border-bottom: 1px solid #ef4444;
+  padding-bottom: 2px;
+  pointer-events: none;
+  z-index: 50;
+}
+
+/* Ensure ALL interactive items hide default cursor */
+*,
+a,
+button,
+[role="button"],
+input,
+textarea,
+select {
+  cursor: none !important;
 }
 
 @utility glass {
   @apply bg-background/80 backdrop-blur-md border border-border;
 }
+
 @utility hover-glass {
   @apply hover:bg-card/80 hover:backdrop-blur-md transition-colors;
 }

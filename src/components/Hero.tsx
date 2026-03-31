@@ -3,22 +3,28 @@
 import * as React from "react"
 import { ArrowRight, Download, Mail } from "lucide-react"
 import { FaGithub, FaLinkedin } from "react-icons/fa"
-import { motion } from "framer-motion"
+import { motion, useScroll, useTransform } from "framer-motion"
 
 export function Hero() {
+  const { scrollY } = useScroll()
+  // Parallax effects
+  const yText = useTransform(scrollY, [0, 1000], [0, 200])
+  const opacity = useTransform(scrollY, [0, 500], [1, 0])
+  const scale = useTransform(scrollY, [0, 500], [1, 0.95])
+
   return (
-    <section id="about" className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
-      {/* Background glow effects */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent/20 rounded-full blur-[120px] opacity-50 pointer-events-none" />
-      
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="max-w-3xl">
+    <section id="about" className="relative pt-32 pb-20 lg:pt-56 lg:pb-32 overflow-hidden min-h-[90vh] flex items-center">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10" data-design-tag="max-w-7xl mx-auto sm:px-6">
+        <motion.div className="max-w-3xl" style={{ y: yText, opacity, scale }}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-accent font-mono font-medium tracking-tight mb-4">
+            <h2 
+              className="text-accent font-mono font-medium tracking-tight mb-4"
+              data-design-tag="font-mono text-accent tracking-tighter"
+            >
               Hi, my name is
             </h2>
           </motion.div>
@@ -28,7 +34,10 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <h1 className="text-5xl sm:text-7xl font-bold tracking-tight text-foreground mb-4">
+            <h1 
+              className="text-5xl sm:text-7xl font-bold tracking-tight text-foreground mb-4"
+              data-design-tag="font-sans 7xl font-bold"
+            >
               Raunak Kushwaha.
             </h1>
           </motion.div>
@@ -38,7 +47,10 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <h2 className="text-4xl sm:text-6xl font-bold tracking-tight text-muted-foreground mb-6">
+            <h2 
+              className="text-4xl sm:text-6xl font-bold tracking-tight text-muted-foreground mb-6"
+              data-design-ruler="margin-bottom: 24px"
+            >
               I build intuitive digital experiences.
             </h2>
           </motion.div>
@@ -48,8 +60,11 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <p className="text-lg text-muted-foreground max-w-2xl mb-10 leading-relaxed">
-              I'm a passionate <span className="text-foreground font-medium">UI/UX Designer</span> and <span className="text-foreground font-medium">Full-Stack (MERN) Developer</span> with a Computer Science degree, seeking entry-level opportunities. With proficiency in modern design tools and web technologies, I focus on turning complex problems into elegant, user-centered solutions.
+            <p 
+              className="text-lg text-muted-foreground max-w-2xl mb-10 leading-relaxed"
+              data-design-ruler="margin-bottom: 40px"
+            >
+              I'm a passionate <span className="text-foreground font-medium" data-design-tag="font-medium inline">UI/UX Designer</span> and <span className="text-foreground font-medium">Full-Stack (MERN) Developer</span> with a Computer Science degree, seeking entry-level opportunities. With proficiency in modern design tools and web technologies, I focus on turning complex problems into elegant, user-centered solutions.
             </p>
           </motion.div>
 
@@ -58,6 +73,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
             className="flex flex-wrap gap-4 items-center"
+            data-design-tag="flex row gap-16px items-center"
           >
             <a 
               href="mailto:raunakkush2005@gmail.com"
@@ -84,7 +100,7 @@ export function Hero() {
               </a>
             </div>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )

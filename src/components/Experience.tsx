@@ -29,8 +29,8 @@ const experienceData = [
 
 export function Experience() {
   return (
-    <section id="experience" className="py-20 lg:py-32 relative">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="experience" className="py-20 lg:py-32 relative overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeading 
           title="Experience" 
           subtitle="My professional work history and technical training." 

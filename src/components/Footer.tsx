@@ -30,13 +30,13 @@ export function Footer() {
           </p>
 
           <div className="flex flex-wrap gap-4 items-center justify-center mb-16">
-            <a 
+            <a
               href="mailto:raunakkush2005@gmail.com"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-accent text-accent-foreground font-semibold rounded-lg hover:bg-accent/90 transition-transform hover:-translate-y-1 shadow-lg hover:shadow-accent/20"
             >
               Say Hello <ArrowRight className="h-5 w-5" />
             </a>
-            
+
             <a
               href="/Resume - Onep.pdf"
               target="_blank"
@@ -48,10 +48,10 @@ export function Footer() {
           </div>
 
           <div className="flex gap-6 justify-center text-muted-foreground mb-8">
-            <a href="#" className="hover:text-accent transition-colors" aria-label="GitHub">
+            <a href="https://github.com/Raunak-kushwaha" className="hover:text-accent transition-colors" aria-label="GitHub">
               <FaGithub className="h-6 w-6" />
             </a>
-            <a href="#" className="hover:text-accent transition-colors" aria-label="LinkedIn">
+            <a href="https://www.linkedin.com/in/raunak-kushwaha/" className="hover:text-accent transition-colors" aria-label="LinkedIn">
               <FaLinkedin className="h-6 w-6" />
             </a>
             <a href="mailto:raunakkush2005@gmail.com" className="hover:text-accent transition-colors" aria-label="Email">

@@ -38,8 +38,8 @@ const projectsData = [
 
 export function Projects() {
   return (
-    <section id="projects" className="py-20 lg:py-32 relative bg-muted/30">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="projects" className="py-20 lg:py-32 relative bg-muted/30 overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeading 
           title="Some Things I've Built" 
           subtitle="A selection of my recent works." 
