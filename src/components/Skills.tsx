@@ -110,13 +110,15 @@ const education = [
 ]
 
 const certifications = [
-  "Accenture - Digital Skills: User Experience",
-  "Internshala - Web Development",
-  "IIT Kanpur - Full Stack Web Development MERN",
-  "Goldman Sachs - Software Engineering Training",
-  "Deloitte Australia - Data Analytics Training",
-  "Responsive Web Design",
-  "The Origins III: JavaScript"
+  "AI Fluency for students — Anthropic",
+  "Claude Code in Action — Anthropic",
+  "Introduction to Model Context Protocol — Anthropic",
+  "Digital Skills: User Experience — Accenture",
+  "Full Stack Web Development (MERN) — IIT Kanpur",
+  "The Origins III: JavaScript — Codédex",
+  "Responsive Web Design — freeCodeCamp",
+  "Data Analytics Job Simulation — Deloitte Australia",
+  "Software Engineering Job Simulation — Goldman Sachs"
 ]
 
 export function Skills() {

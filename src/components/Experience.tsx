@@ -7,6 +7,15 @@ import { Briefcase, Building } from "lucide-react"
 
 const experienceData = [
   {
+    role: "Intern - UI/UX Designer",
+    company: "Infotact Solutions",
+    date: "02/2026 – Present",
+    description: [
+      "Designing user interfaces for web and mobile applications."
+    ],
+    skills: ["Figma", "Adobe Illustrator", "Adobe Photoshop", "UI/UX Design"]
+  },
+  {
     role: "Intern - Full-Stack (MERN) Developer",
     company: "Indian Institute of Technology Kanpur",
     date: "06/2025 – 08/2025",
@@ -31,15 +40,15 @@ export function Experience() {
   return (
     <section id="experience" className="py-20 lg:py-32 relative overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <SectionHeading 
-          title="Experience" 
-          subtitle="My professional work history and technical training." 
+        <SectionHeading
+          title="Experience"
+          subtitle="My professional work history and technical training."
         />
 
         <div className="relative pl-8 md:pl-0">
           {/* Vertical timeline line for mobile */}
           <div className="md:hidden absolute left-0 top-0 bottom-0 w-px bg-border ml-10"></div>
-          
+
           <div className="space-y-12">
             {experienceData.map((exp, index) => (
               <motion.div
@@ -89,8 +98,8 @@ export function Experience() {
 
                   <div className="flex flex-wrap gap-2">
                     {exp.skills.map((skill, i) => (
-                      <span 
-                        key={i} 
+                      <span
+                        key={i}
                         className="px-3 py-1 text-xs font-mono font-medium rounded-full bg-muted text-muted-foreground border border-border"
                       >
                         {skill}
