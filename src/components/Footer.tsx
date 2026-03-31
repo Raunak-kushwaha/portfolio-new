@@ -58,7 +58,7 @@ export function MainFooter() {
         <a href="https://www.linkedin.com/in/raunak-kushkushwaha/" className="hover:text-accent transition-colors" aria-label="LinkedIn">
           <FaLinkedin className="h-6 w-6" />
         </a>
-        <a href="#" className="hover:text-accent transition-colors" aria-label="Discord">
+        <a href="https://discord.com/users/756028503408902226" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors" aria-label="Discord">
           <FaDiscord className="h-6 w-6" />
         </a>
         <a href="mailto:raunakkush2005@gmail.com" className="hover:text-accent transition-colors" aria-label="Email">

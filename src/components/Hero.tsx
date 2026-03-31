@@ -90,7 +90,7 @@ export function Hero() {
               <a href="https://www.linkedin.com/in/raunak-kushwaha/" target="_blank" rel="noopener noreferrer" className="p-3 glass hover-glass rounded-lg text-muted-foreground hover:text-foreground transition-colors" aria-label="LinkedIn">
                 <FaLinkedin className="h-5 w-5" />
               </a>
-              <a href="#" target="_blank" rel="noopener noreferrer" className="p-3 glass hover-glass rounded-lg text-muted-foreground hover:text-foreground transition-colors" aria-label="Discord">
+              <a href="https://discord.com/users/756028503408902226" target="_blank" rel="noopener noreferrer" className="p-3 glass hover-glass rounded-lg text-muted-foreground hover:text-foreground transition-colors" aria-label="Discord">
                 <FaDiscord className="h-5 w-5" />
               </a>
             </div>
