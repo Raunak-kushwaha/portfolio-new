@@ -40,9 +40,9 @@ export function Projects() {
   return (
     <section id="projects" className="py-20 lg:py-32 relative overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <SectionHeading 
-          title="Some Things I've Built" 
-          subtitle="A selection of my recent works." 
+        <SectionHeading
+          title="A Few Things I've Built"
+          subtitle="A selection of my recent works."
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 mt-12">
@@ -57,7 +57,7 @@ export function Projects() {
             >
               {/* Subtle gradient background on hover */}
               <div className="absolute inset-0 bg-gradient-to-tr from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-              
+
               <div className="relative z-10 flex flex-col h-full">
                 <div className="flex justify-between items-start mb-8">
                   <div className="p-3 bg-muted rounded-xl text-accent">
@@ -82,8 +82,8 @@ export function Projects() {
 
                 <div className="mt-auto pt-6 flex flex-wrap gap-x-4 gap-y-2">
                   {project.tech.map((tech, i) => (
-                    <span 
-                      key={i} 
+                    <span
+                      key={i}
                       className="text-sm font-mono text-muted-foreground"
                     >
                       {tech}

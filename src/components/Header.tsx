@@ -4,7 +4,7 @@ import * as React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
-import { Menu, X, Focus } from "lucide-react"
+import { Menu, X, Focus, FileText } from "lucide-react"
 import { useDesignMode } from "./DesignModeContext"
 import { ThemeToggle } from "./ThemeToggle"
 import { cn } from "@/lib/utils"
@@ -81,9 +81,9 @@ export function Header() {
                 href="/Resume - Onep.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2 text-sm font-medium bg-accent text-accent-foreground rounded-full hover:bg-accent/90 transition-transform hover:-translate-y-0.5"
+                className="flex items-center gap-2 px-4 py-2 text-sm font-medium bg-accent text-accent-foreground rounded-full hover:bg-accent/90 transition-transform hover:-translate-y-0.5 shadow-sm shadow-accent/10"
               >
-                Resume
+                <FileText className="w-3.5 h-3.5" /> Resume
               </a>
               <ThemeToggle />
               <button
@@ -167,9 +167,9 @@ export function Header() {
                   href="/Resume - Onep.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block mt-6 px-4 py-4 text-center text-lg font-bold bg-accent text-accent-foreground rounded-2xl shadow-lg shadow-accent/20 active:scale-95 transition-all"
+                  className="flex items-center justify-center gap-2 mt-6 px-4 py-4 text-lg font-bold bg-accent text-accent-foreground rounded-2xl shadow-lg shadow-accent/20 active:scale-95 transition-all text-center"
                 >
-                  Download Resume
+                  <FileText className="w-5 h-5" /> Download Resume
                 </a>
               </motion.div>
             </div>

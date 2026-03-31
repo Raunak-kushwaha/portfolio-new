@@ -3,7 +3,7 @@
 import * as React from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { ArrowRight, Download, Mail } from "lucide-react"
+import { ArrowRight, Download, Mail, Send } from "lucide-react"
 import { FaGithub, FaLinkedin, FaDiscord } from "react-icons/fa"
 
 export function SubFooter() {
@@ -31,7 +31,7 @@ export function SubFooter() {
             href="/contact"
             className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-accent text-accent-foreground font-semibold rounded-lg hover:bg-accent/90 transition-transform hover:-translate-y-1 shadow-lg hover:shadow-accent/20"
           >
-            Say Hello <ArrowRight className="h-5 w-5" />
+            Say Hello <Send className="h-5 w-5" />
           </Link>
 
           <a

@@ -22,20 +22,20 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h2 
+            <h2
               className="text-accent font-mono font-medium tracking-tight mb-4"
               data-design-tag="font-mono text-accent tracking-tighter"
             >
               Hi, my name is
             </h2>
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <h1 
+            <h1
               className="text-5xl sm:text-7xl font-bold tracking-tight text-foreground mb-4"
               data-design-tag="font-sans 7xl font-bold"
             >
@@ -48,7 +48,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <h2 
+            <h2
               className="text-4xl sm:text-6xl font-bold tracking-tight text-muted-foreground mb-6"
               data-design-ruler="margin-bottom: 24px"
             >
@@ -61,7 +61,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <p 
+            <p
               className="text-lg text-muted-foreground max-w-2xl mb-10 leading-relaxed"
               data-design-ruler="margin-bottom: 40px"
             >
@@ -80,9 +80,9 @@ export function Hero() {
               href="/contact"
               className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-foreground text-background font-medium rounded-lg hover:bg-foreground/90 transition-colors"
             >
-              Get in touch <ArrowRight className="h-4 w-4" />
+              Get in touch <Mail className="h-4 w-4" />
             </Link>
-            
+
             <div className="flex items-center gap-2">
               <a href="https://github.com/Raunak-kushwaha" target="_blank" rel="noopener noreferrer" className="p-3 glass hover-glass rounded-lg text-muted-foreground hover:text-foreground transition-colors" aria-label="GitHub">
                 <FaGithub className="h-5 w-5" />
