@@ -18,13 +18,37 @@ export default function ContactPage() {
     setTimeout(() => setCopiedField(null), 2000)
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitting(true)
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500))
-    setIsSubmitting(false)
-    setIsSubmitted(true)
+
+    const formData = new FormData(e.currentTarget)
+    const object = Object.fromEntries(formData)
+    const json = JSON.stringify(object)
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: json
+      })
+
+      const result = await response.json()
+      if (result.success) {
+        setIsSubmitted(true)
+      } else {
+        console.error("Submission failed:", result)
+        alert("Oops! Something went wrong. Please try again or contact me directly via email.")
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error)
+      alert("Submission error. Please check your connection and try again.")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const contactItems = [
@@ -111,6 +135,7 @@ export default function ContactPage() {
                     </div>
 
                     <button
+                      type="button"
                       onClick={() => copyToClipboard(item.value, item.id)}
                       className="p-2 text-muted-foreground hover:text-foreground transition-colors"
                       title="Copy to clipboard"
@@ -143,8 +168,14 @@ export default function ContactPage() {
                       exit={{ opacity: 0, y: -20 }}
                     >
                       <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-8">Send a message</h2>
-                      
+
                       <form className="space-y-6" onSubmit={handleSubmit}>
+                        {/* Web3Forms Integration */}
+                        <input type="hidden" name="access_key" value="51c71530-9915-45ee-9550-f230636aa8e3" />
+                        <input type="checkbox" name="botcheck" className="hidden" style={{ display: "none" }} />
+                        <input type="hidden" name="subject" value="New Portfolio Message from Raunak's Site" />
+                        <input type="hidden" name="from_name" value="Portfolio Contact Form" />
+
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                           <div className="space-y-2">
                             <label htmlFor="name" className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Your Name <span className="text-accent">*</span></label>
@@ -152,6 +183,7 @@ export default function ContactPage() {
                               required
                               type="text"
                               id="name"
+                              name="name"
                               placeholder="Alex Johnson"
                               className="w-full px-4 py-3 rounded-xl bg-background/50 border border-border focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all placeholder:text-muted-foreground/50 text-foreground"
                             />
@@ -162,6 +194,7 @@ export default function ContactPage() {
                               required
                               type="email"
                               id="email"
+                              name="email"
                               placeholder="alex@company.com"
                               className="w-full px-4 py-3 rounded-xl bg-background/50 border border-border focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all placeholder:text-muted-foreground/50 text-foreground"
                             />
@@ -169,11 +202,12 @@ export default function ContactPage() {
                         </div>
 
                         <div className="space-y-2">
-                          <label htmlFor="subject" className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Subject <span className="text-accent">*</span></label>
+                          <label htmlFor="form-subject" className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Subject <span className="text-accent">*</span></label>
                           <input
                             required
                             type="text"
-                            id="subject"
+                            id="form-subject"
+                            name="message_subject"
                             placeholder="UI/UX Design Opportunity"
                             className="w-full px-4 py-3 rounded-xl bg-background/50 border border-border focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all placeholder:text-muted-foreground/50 text-foreground"
                           />
@@ -184,6 +218,7 @@ export default function ContactPage() {
                           <textarea
                             required
                             id="message"
+                            name="message"
                             rows={6}
                             placeholder="Tell me about the project or opportunity..."
                             className="w-full px-4 py-3 rounded-xl bg-background/50 border border-border focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all placeholder:text-muted-foreground/50 text-foreground resize-y"
@@ -236,7 +271,7 @@ export default function ContactPage() {
               <div className="relative p-8 rounded-[2rem] border border-border overflow-hidden group">
                 <div className="absolute inset-0 bg-accent/5 transition-colors group-hover:bg-accent/10" />
                 <div className="absolute -top-24 -right-24 w-64 h-64 bg-accent/20 rounded-full blur-[80px] pointer-events-none" />
-                
+
                 <div className="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-6">
                   <div>
                     <h3 className="text-xl font-bold text-foreground mb-2">Download My Resume</h3>
