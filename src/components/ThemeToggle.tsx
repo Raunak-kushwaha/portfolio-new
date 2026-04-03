@@ -5,16 +5,31 @@ import { Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 
 export function ThemeToggle() {
-  const { theme, setTheme } = useTheme()
+  const { theme, setTheme, resolvedTheme } = useTheme()
+  const [mounted, setMounted] = React.useState(false)
+
+  // Prevent hydration mismatch: icons only render after mount
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) {
+    return <div className="h-9 w-9 p-2" />
+  }
+
+  const isDark = resolvedTheme === "dark"
 
   return (
     <button
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="inline-flex items-center justify-center rounded-md p-2 hover:bg-muted transition-colors"
+      onClick={() => setTheme(isDark ? "light" : "dark")}
+      className="inline-flex items-center justify-center rounded-full p-2 hover:bg-muted transition-colors"
       aria-label="Toggle theme"
     >
-      <Sun className="h-5 w-5 dark:hidden" />
-      <Moon className="hidden h-5 w-5 dark:block" />
+      {isDark ? (
+        <Sun className="h-5 w-5 text-accent" />
+      ) : (
+        <Moon className="h-5 w-5 text-accent" />
+      )}
     </button>
   )
 }

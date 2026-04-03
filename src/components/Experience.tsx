@@ -46,8 +46,16 @@ export function Experience() {
         />
 
         <div className="relative pl-8 md:pl-0">
-          {/* Vertical timeline line for mobile */}
-          <div className="md:hidden absolute left-0 top-0 bottom-0 w-px bg-border ml-10"></div>
+          {/* Vertical timeline line */}
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            whileInView={{ height: "100%", opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.5, ease: "easeInOut" }}
+            className="absolute left-4 md:left-[264px] top-0 bottom-0 w-[2px] bg-gradient-to-b from-transparent via-accent/50 to-transparent z-0"
+          >
+            <div className="absolute inset-0 bg-accent/20 blur-[2px]" />
+          </motion.div>
 
           <div className="space-y-12">
             {experienceData.map((exp, index) => (
@@ -67,8 +75,8 @@ export function Experience() {
                 </div>
 
                 {/* Timeline Node */}
-                <div className="absolute left-[-40px] md:static w-12 h-12 rounded-full glass flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-accent-foreground transition-colors shrink-0 z-10 shadow-lg mt-0 md:-mt-3">
-                  <Briefcase className="w-5 h-5" />
+                <div className="absolute left-[-40px] md:static w-12 h-12 rounded-full glass flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-accent-foreground transition-colors shrink-0 z-10 shadow-lg mt-0 md:-mt-[18px]">
+                  <Briefcase className="w-5 h-5 transition-transform group-hover:scale-110" />
                 </div>
 
                 {/* Content */}

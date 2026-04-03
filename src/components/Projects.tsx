@@ -3,7 +3,7 @@
 import * as React from "react"
 import { motion } from "framer-motion"
 import { SectionHeading } from "./SectionHeading"
-import { ExternalLink, Folder } from "lucide-react"
+import { ExternalLink, Flame, GraduationCap, Users, StickyNote } from "lucide-react"
 
 const projectsData = [
   {
@@ -11,28 +11,32 @@ const projectsData = [
     category: "Branding",
     date: "01/2026",
     description: "Designed ZESTRO, a conceptual fast-casual food brand, focusing on a friendly visual identity and scalable branding system.",
-    tech: ["Figma", "Illustrator", "Branding Design"]
+    tech: ["Figma", "Illustrator", "Branding Design"],
+    icon: Flame
   },
   {
     title: "Student ERP Portal Redesign",
     category: "UI/UX",
     date: "01/2026",
     description: "Redesigned the commonly used ERP portal by students for tracking their academic progress and related work.",
-    tech: ["Figma", "User Research", "Wireframing", "Prototyping"]
+    tech: ["Figma", "User Research", "Wireframing", "Prototyping"],
+    icon: GraduationCap
   },
   {
     title: "FusionCrew",
     category: "MERN Stack",
     date: "08/2025",
     description: "Built a platform for showcasing collaborative or individual projects. This project was recognised by IIT Kanpur.",
-    tech: ["MongoDB", "Express", "React", "Node.js"]
+    tech: ["MongoDB", "Express", "React", "Node.js"],
+    icon: Users
   },
   {
     title: "UniqueNotes",
     category: "Full-Stack",
     date: "04/2025",
     description: "Designed for a seamless, user-friendly note management experience. Fully capable of handling continuous CRUD operations.",
-    tech: ["HTML", "CSS", "Java", "JavaScript", "Servlet", "JSP", "MySQL"]
+    tech: ["HTML", "CSS", "Java", "JavaScript", "Servlet", "JSP", "MySQL"],
+    icon: StickyNote
   }
 ]
 
@@ -60,8 +64,8 @@ export function Projects() {
 
               <div className="relative z-10 flex flex-col h-full">
                 <div className="flex justify-between items-start mb-8">
-                  <div className="p-3 bg-muted rounded-xl text-accent">
-                    <Folder className="w-8 h-8" />
+                  <div className="p-3 bg-muted rounded-xl text-accent transition-transform group-hover:scale-110 group-hover:bg-accent group-hover:text-accent-foreground backdrop-blur-md">
+                    <project.icon className="w-8 h-8" />
                   </div>
                   <div className="flex gap-4">
                     <button className="text-muted-foreground hover:text-accent transition-colors">

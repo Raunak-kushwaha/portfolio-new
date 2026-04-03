@@ -24,6 +24,8 @@
   --radius-sm: calc(var(--radius) - 4px);
 }
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
   :root {
     --background: #efd9ce;

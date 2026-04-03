@@ -11,7 +11,7 @@ export function CustomCursor() {
   const [isMouseDown, setIsMouseDown] = React.useState(false)
 
   // Use a spring to smooth the speed changes
-  const speedSpring = useSpring(0, { stiffness: 100, damping: 20 })
+  const speedSpring = useSpring(0, { stiffness: 100, damping: 10 })
 
   React.useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -55,13 +55,13 @@ export function CustomCursor() {
     const idleSpeed = 0.5
     const hoverSpeed = 3
     const clickSpeed = 20
-    
+
     const targetSpeed = isMouseDown ? clickSpeed : (isHovering ? hoverSpeed : idleSpeed)
     speedSpring.set(targetSpeed)
-    
+
     const currentRotation = rotation.get()
     // Increment the rotation based on the smoothed current speed
-    rotation.set(currentRotation + speedSpring.get() * (delta / 16.66) )
+    rotation.set(currentRotation + speedSpring.get() * (delta / 16.66))
   })
 
   const springConfig = { damping: 25, stiffness: 200, mass: 0.5 }
@@ -104,8 +104,8 @@ export function CustomCursor() {
         transition={{
           scale: {
             type: "spring",
-            stiffness: 400,
-            damping: 25
+            stiffness: 40,
+            damping: 10
           }
         }}
         className="flex items-center justify-center w-6 h-6"
