@@ -127,8 +127,8 @@ export function PortfolioHome() {
               className="eyebrow-logo"
               src="/logodark.png"
               alt="itsmyscreen"
-              width={155}
-              height={34}
+              width={620}
+              height={136}
             />
           </div>
           <h1 className="hero-name" id="home-title">
